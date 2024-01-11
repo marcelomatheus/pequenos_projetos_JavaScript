@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        body{
+            background-color: rgb(204, 204, 204);
+        }
+        main{
+            width: 340px;
+            height: 500px;
+            margin: 100px auto;
+            background: rgb(36, 36, 36);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        input.visor{
+            width: 100%;
+            height: 60px;
+            text-align: right;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.466);
+            border:none;
+            color:rgb(233, 233, 233);
+            margin-bottom: 15px;
+            border: 1px inset black;
+            margin: 10px auto;
+            background-color: grey;
+            padding-right: 10px;
+            
+        }
+        .linha button{
+            width: 78px;
+            height: 68px;
+            font-size:25px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.466);
+            background: rgb(54, 54, 54);
+            border: none;
+            color:rgb(255, 255, 255);
+            border-radius: 5px;
+            margin-bottom:5px;
+        }
+        .linha button:hover{
+            background: rgba(112, 112, 112, 0.753);
+            border:none;
+            font-size:35px;
+        }
+        .linha{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        p{
+            color:rgba(255, 255, 255, 0.336);
+            text-align: center;
+            font-size: 15px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: 12px;
+        }
+        #container-visor{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        input::placeholder{
+            color:rgb(197, 197, 197);
+           
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <main>
+        
+        <section id="container-visor">
+            <input type="text" id="visor" class="visor" placeholder="0">
+        </section>
+        
+        <section id="teclas">
+        <div class="linha">
+            <button onclick="calcular('C', 'operador')" type="text" style="width: 165px;">C</button> <!--2 casas-->
+            <button onclick="calcular('/', 'operador')" type="text">/</button>
+            <button onclick="calcular('*', 'operador')" type="text">x</button>
+        </div>
+        <div class="linha">
+            <button onclick="calcular('1', 'valor')" type="text">1</button>
+            <button onclick="calcular('2', 'valor')" type="text">2</button>
+            <button onclick="calcular('3', 'valor')" type="text">3</button>
+            <button onclick="calcular('+', 'operador')" type="text">+</button>
+        </div>
+        <div class="linha">
+            <button onclick="calcular('4', 'valor')" type="text">4</button>
+            <button onclick="calcular('5', 'valor')" type="text">5</button>
+            <button onclick="calcular('6', 'valor')" type="text">6</button>
+            <button onclick="calcular('-', 'operador')" type="text">-</button>
+        </div>
+        <div class="linha">
+            <button onclick="calcular('7', 'valor')" type="text">7</button>
+            <button onclick="calcular('8', 'valor')" type="text">8</button>
+            <button onclick="calcular('9', 'valor')" type="text">9</button>
+            <button onclick="calcular('.', 'operador')" type="text">,</button>
+        </div>
+        <div class="linha">
+            <button onclick="calcular('0', 'valor')" type="text">0</button>
+            <button onclick="calcular('*0.01', 'operador')" type="text">%</button>
+            <button onclick="calcular('=', 'operador')" type="text" style="width: 165px;">=</button>
+        </div>
+    </section>
+    <p>by Marcelo Matheus</p>
+    </main>
+    <script>
+        function calcular(conteudo,tipo){
+            if(tipo==='operador'){
+                if(conteudo==='C'){
+                    document.getElementById('visor').value = ''
+                }
+                if(conteudo==='+'||conteudo==='-'||conteudo==='*'||conteudo==='/'||conteudo==='.'){
+                    document.getElementById('visor').value += conteudo
+                }
+                if(conteudo==='*0.01'){
+                    document.getElementById('visor').value += conteudo
+                    var valor_visor = eval(document.getElementById('visor').value)
+                    document.getElementById('visor').value = valor_visor + '*'
+                    
+                }
+                if(conteudo==='='){
+                    var valor_visor = eval(document.getElementById('visor').value)
+                    document.getElementById('visor').value = valor_visor
+                }
+            } else if(tipo==='valor'){
+                document.getElementById('visor').value += conteudo
+            }
+        }
+    </script>
+</body>
+</html>
